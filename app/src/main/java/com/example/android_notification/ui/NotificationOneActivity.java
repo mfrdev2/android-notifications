@@ -3,12 +3,12 @@ package com.example.android_notification.ui;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.android_notification.R;
 import com.example.android_notification.databinding.ActivityNotificationOneBinding;
@@ -24,6 +24,7 @@ public class NotificationOneActivity extends AppCompatActivity {
         binding = ActivityNotificationOneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.btnCh1.setOnClickListener(this::sendOnChannel1);
         binding.btnCh2.setOnClickListener(this::sendOnChannel2);
 
@@ -35,21 +36,21 @@ public class NotificationOneActivity extends AppCompatActivity {
 
 
         Intent activityIntent = new Intent(this, NotificationOneActivity.class);
-        PendingIntent contentIntent = NotificationUtils.getActivityPendingIntent(this,activityIntent);
+        PendingIntent contentIntent = NotificationUtils.getActivityPendingIntent(this, activityIntent);
 
         Intent broadcastIntent = new Intent(this, NotificationReceiver.class);
         broadcastIntent.putExtra("toastMessage", message);
 
-        PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this,broadcastIntent);
+        PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this, broadcastIntent);
 
 
         Notification notification = new NotificationCompat.Builder(this, NotificationUtils.NOTIFICATION_CHANNEL_ACTION)
-                .setSmallIcon(R.drawable.ic_baseline_notification)
+                .setSmallIcon(R.drawable.p_transparent_icon)
+                .setColor(ContextCompat.getColor(this,R.color.red))
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setColor(Color.BLUE)
                 //  .setAutoCancel(true)
                 // .setOnlyAlertOnce(true)
                 .setContentIntent(contentIntent)
@@ -65,12 +66,12 @@ public class NotificationOneActivity extends AppCompatActivity {
 
 
         Intent activityIntent = new Intent(this, NotificationOneActivity.class);
-        PendingIntent contentIntent = NotificationUtils.getActivityPendingIntent(this,activityIntent);
+        PendingIntent contentIntent = NotificationUtils.getActivityPendingIntent(this, activityIntent);
 
         Intent broadcastIntent = new Intent(this, NotificationReceiver.class);
         broadcastIntent.putExtra("toastMessage", message);
 
-        PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this,broadcastIntent);
+        PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this, broadcastIntent);
 
 
         Notification notification = new NotificationCompat.Builder(this, NotificationUtils.NOTIFICATION_CHANNEL_INFO)
