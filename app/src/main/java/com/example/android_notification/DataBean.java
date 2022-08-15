@@ -1,14 +1,25 @@
 package com.example.android_notification;
 
+import android.content.Context;
+
 import java.io.Serializable;
 
 public class DataBean implements Serializable {
 private String orderId;
 private String type;
+private Context context;
 
     public DataBean(String orderId, String type) {
         this.orderId = orderId;
         this.type = type;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public String getOrderId() {

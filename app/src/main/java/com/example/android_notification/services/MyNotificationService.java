@@ -1,14 +1,17 @@
 package com.example.android_notification.services;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
+import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
+
+import com.example.android_notification.R;
 
 public class MyNotificationService extends Service {
     private static final String TAG = MyNotificationService.class.getSimpleName();
@@ -20,6 +23,7 @@ public class MyNotificationService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG,"WE ARE NOW IN "+TAG);
+        showCustomPopupMenu();
     }
 
     @Override
@@ -27,27 +31,26 @@ public class MyNotificationService extends Service {
         Log.d(TAG,"WE ARE NOW IN  onStartCommand");
 
 
-        new Handler(getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext())
-                        .setTitle("Data")
-                        .setMessage("This is someThing")
-                        .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
-                            Toast.makeText(getApplicationContext(), "Ok", Toast.LENGTH_LONG).show();
-                        })
-                        .setPositiveButton(android.R.string.cancel, (dialogInterface, i) -> {
-                            Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_LONG).show();
-                        }).create();
-                alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                alertDialog.show();
-
-            }
-        });
-
-
-
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    public  void showCustomPopupMenu()
+    {
+        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view=layoutInflater.inflate(R.layout.popupmenu, null);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT
+        );
+
+        params.gravity= Gravity.CENTER|Gravity.CENTER;
+        params.x=0;
+        params.y=0;
+        windowManager.addView(view, params);
     }
 
     @Override

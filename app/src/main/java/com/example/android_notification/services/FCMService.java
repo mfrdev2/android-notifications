@@ -2,8 +2,15 @@ package com.example.android_notification.services;
 
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -11,7 +18,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.android_notification.DataBean;
 import com.example.android_notification.R;
-import com.example.android_notification.ui.DialogActivity;
 import com.example.android_notification.ui.NotificationOneActivity;
 import com.example.android_notification.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -47,7 +53,8 @@ public class FCMService extends FirebaseMessagingService {
             } else {
                 // Handle message within 10 seconds
                 Map<String, String> data = remoteMessage.getData();
-                handleNow(remoteMessage,data);
+                DataBean dataBean = new DataBean(data.get("orderId"), data.get("type"));
+                handleNow(remoteMessage,dataBean);
             }
 
         }
@@ -65,7 +72,7 @@ public class FCMService extends FirebaseMessagingService {
 
     }
 
-    private void handleNow(RemoteMessage remoteMessage, Map<String, String> data) {
+    private void handleNow(RemoteMessage remoteMessage, DataBean data) {
     /*    new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -82,18 +89,23 @@ public class FCMService extends FirebaseMessagingService {
             }
         });*/
 
-      //  sendOnChannel1(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),data);
-        DataBean dataBean = new DataBean(data.get("orderId"), data.get("type"));
+        sendOnChannel1(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),data);
+
+
+    /*    DataBean dataBean = new DataBean(data.get("orderId"), data.get("type"));
         Intent intent = new Intent(this, DialogActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("data",dataBean);
-        startActivity(intent);
+        startActivity(intent);*/
+
+    //    new ATask().execute(data);
+
 
     }
 
 
 
-    public void sendOnChannel1(String title,String message,Map<String, String> data) {
+    public void sendOnChannel1(String title,String message,DataBean dataBean) {
 
         Intent activityIntent = new Intent(this, NotificationOneActivity.class);
         PendingIntent contentIntent = NotificationUtils.getActivityPendingIntent(this, activityIntent);
@@ -105,7 +117,6 @@ public class FCMService extends FirebaseMessagingService {
         PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this, broadcastIntent);*/
 
         Intent serviceIntent = new Intent(this,MyNotificationService.class);
-        DataBean dataBean = new DataBean(data.get("orderId"), data.get("type"));
         serviceIntent.putExtra("data", dataBean);
         PendingIntent actionIntent = NotificationUtils.getServicePendingIntent(this, serviceIntent);
 
@@ -124,6 +135,45 @@ public class FCMService extends FirebaseMessagingService {
                 .build();
 
         NotificationUtils.notifyNotification(this, 204, notification);
+    }
+
+    private class ATask extends AsyncTask<DataBean, Void,Context>{
+        private  final String TAG = ATask.class.getSimpleName();
+
+        @Override
+        protected Context doInBackground(DataBean... dataBeans) {
+            DataBean dataBean = dataBeans[0];
+            Log.d(TAG,"doInBackground");
+            return dataBean.getContext();
+        }
+
+
+        @Override
+        protected void onPostExecute(Context context) {
+            super.onPostExecute(context);
+            Log.d(TAG,"onPostExecute");
+           FCMService.this.showCustomPopupMenu();
+
+        }
+    }
+
+    public  void showCustomPopupMenu()
+    {
+        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view=layoutInflater.inflate(R.layout.popupmenu, null);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT
+        );
+
+        params.gravity= Gravity.CENTER|Gravity.CENTER;
+        params.x=0;
+        params.y=0;
+        windowManager.addView(view, params);
     }
 
 }
