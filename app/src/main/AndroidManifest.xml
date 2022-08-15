@@ -28,6 +28,12 @@
             android:exported="true">
 
         </service>
+        <service
+            android:name=".services.ChatHeadService"
+            android:enabled="true"
+            android:exported="true">
+
+        </service>
 
         <activity
             android:name=".ui.NotificationTwoActivity"

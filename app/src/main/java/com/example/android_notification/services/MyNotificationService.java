@@ -4,7 +4,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,13 @@ public class MyNotificationService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG,"WE ARE NOW IN "+TAG);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Settings.canDrawOverlays(this)) {
+                showCustomPopupMenu();
+                return;
+            }
+            return;
+        }
         showCustomPopupMenu();
     }
 

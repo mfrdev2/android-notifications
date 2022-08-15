@@ -116,7 +116,7 @@ public class FCMService extends FirebaseMessagingService {
 
         PendingIntent actionIntent = NotificationUtils.getBroadCastPendingIntent(this, broadcastIntent);*/
 
-        Intent serviceIntent = new Intent(this,MyNotificationService.class);
+        Intent serviceIntent = new Intent(this,ChatHeadService.class);
         serviceIntent.putExtra("data", dataBean);
         PendingIntent actionIntent = NotificationUtils.getServicePendingIntent(this, serviceIntent);
 
