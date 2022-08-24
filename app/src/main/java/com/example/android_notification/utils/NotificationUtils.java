@@ -5,9 +5,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
@@ -49,13 +52,15 @@ public class NotificationUtils {
             notificationChannel2.setVibrationPattern(pattern);
             notificationChannel2.enableVibration(true);
 
-            NotificationChannel notificationChannel3 = new NotificationChannel(NOTIFICATION_CHANNEL_ACTION, "Your Notifications",
+            NotificationChannel notificationChannel3 = new NotificationChannel(NOTIFICATION_CHANNEL_ACTION, "Notification with audio",
                     NotificationManager.IMPORTANCE_HIGH);
 
             notificationChannel3.setDescription("");
             notificationChannel3.enableLights(true);
             notificationChannel3.setLightColor(Color.RED);
             notificationChannel3.setVibrationPattern(pattern);
+            //http://www.embusinessproducts.com/how-to-add-a-custom-push-notification-sound-on-ios-and-android-with-react-native-firebase-and-fcm/
+            notificationChannel3.setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + application.getPackageName() + "/raw/custom_notification"), NotificationUtils.getAudioAttributes());
             notificationChannel3.enableVibration(true);
 
             mNotificationManager.createNotificationChannels(Arrays.asList(notificationChannel, notificationChannel2, notificationChannel3));
@@ -90,6 +95,14 @@ public class NotificationUtils {
             return NOTIFICATION_MANAGER_INSTANCE = NotificationManagerCompat.from(context);
         }
         return NOTIFICATION_MANAGER_INSTANCE;
+    }
+
+
+    public static AudioAttributes getAudioAttributes(){
+        return new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                .build();
     }
 
     public static void notifyNotification(Context context, int id, Notification notification) {
