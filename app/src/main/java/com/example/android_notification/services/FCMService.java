@@ -2,11 +2,9 @@ package com.example.android_notification.services;
 
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,6 +20,7 @@ import com.example.android_notification.DataBean;
 import com.example.android_notification.R;
 import com.example.android_notification.ui.NotificationOneActivity;
 import com.example.android_notification.utils.NotificationUtils;
+import com.example.android_notification.utils.BroadcastReceiverHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -58,6 +57,9 @@ public class FCMService extends FirebaseMessagingService {
                 DataBean dataBean = new DataBean(data.get("orderId"), data.get("type"));
                 handleNow(remoteMessage,data);
             }
+            Intent intent = new Intent("page_reload");
+
+            BroadcastReceiverHelper.sendBroadCastData(getApplicationContext(),intent);
 
         }
 

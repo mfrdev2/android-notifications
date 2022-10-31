@@ -1,35 +1,25 @@
 package com.example.android_notification.ui;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.example.android_notification.DataBean;
+import com.example.android_notification.broadcast.PageReloaderStatusReceiver;
 import com.example.android_notification.databinding.ActivityMainBinding;
 import com.example.android_notification.services.ChatHeadService;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.util.Objects;
+import com.example.android_notification.utils.BroadcastReceiverHelper;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -50,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         askNotificationPermission();
 
         windowPermission();
+
+        BroadcastReceiverHelper.registerBroadCastReceiver(this,new PageReloaderStatusReceiver(),new IntentFilter("page_reload"));
+
+        PageReloaderStatusReceiver.getStatus().observe(this,str->{
+            System.out.println(TAG +" :: " +str);
+        });
 
 
     }
