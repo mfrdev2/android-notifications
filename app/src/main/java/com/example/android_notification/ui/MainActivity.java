@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
         askNotificationPermission();
 
-        windowPermission();
+       // windowPermission();
 
         BroadcastReceiverHelper.registerBroadCastReceiver(this,new PageReloaderStatusReceiver(),new IntentFilter("page_reload"));
 
@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(TAG +" :: " +str);
         });
 
+        passwordView();
+
+
+    }
+
+    private void passwordView() {
 
     }
 

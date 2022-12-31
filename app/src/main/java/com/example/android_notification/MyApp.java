@@ -1,23 +1,29 @@
 package com.example.android_notification;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.android_notification.utils.NotificationUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MyApp extends Application {
     private static final String TAG = MyApp.class.getSimpleName();
+    private  NotificationManagerCompat notificationManagerCompat;
+    private static MyApp myApp;
     @Override
     public void onCreate() {
         super.onCreate();
        NotificationUtils.createNotificationChannels(this);
+       myApp = this;
        initFCM();
+       initNotificationManager(this);
+    }
+
+    public static MyApp getMyApp() {
+        return myApp;
     }
 
     private void initFCM(){
@@ -36,5 +42,13 @@ public class MyApp extends Application {
                     Log.d(TAG, msg);
                   //  Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void initNotificationManager(Context context) {
+        this.notificationManagerCompat = NotificationManagerCompat.from(context);
+    }
+
+    public NotificationManagerCompat getNotificationManagerCompat() {
+        return notificationManagerCompat;
     }
 }

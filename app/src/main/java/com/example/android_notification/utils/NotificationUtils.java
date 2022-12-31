@@ -24,6 +24,8 @@ public class NotificationUtils {
     public static final String NOTIFICATION_CHANNEL_INFO = "NOTIFICATION_INFO";
     public static final String NOTIFICATION_CHANNEL_ACTION = "NOTIFICATION_ACTION";
 
+    public static final String NOTIFICATION_ORDER = "ORDER";
+
     private static NotificationManagerCompat NOTIFICATION_MANAGER_INSTANCE;
 
     public static void createNotificationChannels(Application application) {

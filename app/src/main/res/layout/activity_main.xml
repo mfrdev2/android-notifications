@@ -24,4 +24,29 @@
         android:layout_margin="10dp"
    />
 
+    <com.example.android_notification.ui.PasswordView
+        android:id="@+id/til_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingTop="5dp"
+        app:endIconCheckable="true"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/teal_200"
+        app:hintEnabled="false">
+        <!--                app:passwordToggleEnabled="true"-->
+        <!--                app:passwordToggleDrawable="@drawable/show_password_selector"-->
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="pssword"
+            android:inputType="textPassword"
+            android:padding="11dp"
+            android:paddingStart="13dp"
+            android:paddingEnd="13dp"
+            android:textAlignment="viewStart"
+            android:textSize="13sp" />
+    </com.example.android_notification.ui.PasswordView>
+
 </androidx.appcompat.widget.LinearLayoutCompat>

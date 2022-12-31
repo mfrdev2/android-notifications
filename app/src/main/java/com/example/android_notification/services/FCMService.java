@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.android_notification.DataBean;
+import com.example.android_notification.MyApp;
 import com.example.android_notification.R;
 import com.example.android_notification.ui.NotificationOneActivity;
 import com.example.android_notification.utils.NotificationUtils;
@@ -188,8 +190,13 @@ public class FCMService extends FirebaseMessagingService {
                 .setContentIntent(contentIntent)
              //   .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
                 .build();
+        notification.flags = Notification.FLAG_INSISTENT;
+      //  NotificationUtils.notifyNotification(this, 204, notification);
 
-        NotificationUtils.notifyNotification(this, 204, notification);
+
+        MyApp.getMyApp().getNotificationManagerCompat().notify(NotificationUtils.NOTIFICATION_ORDER,204,notification);
+
+
     }
 
     private class ATask extends AsyncTask<DataBean, Void,Context>{
