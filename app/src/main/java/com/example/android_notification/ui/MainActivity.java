@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, NotificationOneActivity.class));
         });
         binding.btnNotificationTwo.setOnClickListener(v -> {
-            startActivity(new Intent(this, NotificationTwoActivity.class));
+            startActivity(new Intent(this, PermissionHandingActivity.class));
         });
         askNotificationPermission();
 
