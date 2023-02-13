@@ -43,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.setDDLList();
 
+        binding.btnPermission.setOnClickListener(v->{
+            startActivity(new Intent(this,PermissionHandingActivity.class));
+        });
         binding.btnNotificationOne.setOnClickListener(v -> {
             startActivity(new Intent(this, NotificationOneActivity.class));
         });
         binding.btnNotificationTwo.setOnClickListener(v -> {
-            startActivity(new Intent(this, PermissionHandingActivity.class));
+            startActivity(new Intent(this, NotificationTwoActivity.class));
         });
         askNotificationPermission();
 
