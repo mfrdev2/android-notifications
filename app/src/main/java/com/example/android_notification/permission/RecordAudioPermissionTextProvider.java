@@ -1,6 +1,6 @@
-package com.example.android_notification.ui;
+package com.example.android_notification.permission;
 
-public class RecordAudioPermissionTextProvider implements PermissionTextProvider{
+public class RecordAudioPermissionTextProvider implements PermissionTextProvider {
     @Override
     public String getDescription(Boolean isPermanentlyDeclined) {
          if(isPermanentlyDeclined) {

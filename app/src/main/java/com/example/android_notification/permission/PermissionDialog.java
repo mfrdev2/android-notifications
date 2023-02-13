@@ -1,9 +1,12 @@
-package com.example.android_notification.ui;
+package com.example.android_notification.permission;
 
 import android.content.Context;
-import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
+
+import com.example.android_notification.permission.PermissionTextProvider;
+import com.example.android_notification.ui.DialogCallBack;
+import com.example.android_notification.ui.PermissionViewModel;
 
 public class PermissionDialog {
     final PermissionTextProvider permissionTextProvider;

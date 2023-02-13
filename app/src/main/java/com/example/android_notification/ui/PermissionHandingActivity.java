@@ -18,9 +18,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android_notification.R;
 import com.example.android_notification.databinding.ActivityPermissionHandingBinding;
+import com.example.android_notification.permission.CameraPermissionTextProvider;
+import com.example.android_notification.permission.PermissionDialog;
+import com.example.android_notification.permission.PermissionTextProvider;
+import com.example.android_notification.permission.PhoneCallPermissionTextProvider;
+import com.example.android_notification.permission.RecordAudioPermissionTextProvider;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

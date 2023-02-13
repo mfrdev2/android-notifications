@@ -1,4 +1,4 @@
-package com.example.android_notification.ui;
+package com.example.android_notification.permission;
 
 public class CameraPermissionTextProvider implements PermissionTextProvider {
     @Override

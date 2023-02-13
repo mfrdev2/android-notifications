@@ -1,6 +1,6 @@
-package com.example.android_notification.ui;
+package com.example.android_notification.permission;
 
-public class PhoneCallPermissionTextProvider implements PermissionTextProvider{
+public class PhoneCallPermissionTextProvider implements PermissionTextProvider {
     @Override
     public String getDescription(Boolean isPermanentlyDeclined) {
          if(isPermanentlyDeclined) {
