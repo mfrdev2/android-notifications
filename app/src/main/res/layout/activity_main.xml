@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/btnNotificationOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification 1"
-        android:layout_margin="10dp"
-       />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android_notification.viewmodel.MainActivityViewModel" />
+    </data>
 
-    <Button
-        android:id="@+id/btnNotificationTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification 2"
-        android:layout_margin="10dp"
-   />
-
-    <com.example.android_notification.ui.PasswordView
-        android:id="@+id/til_password"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:paddingTop="5dp"
-        app:endIconCheckable="true"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/teal_200"
-        app:hintEnabled="false">
-        <!--                app:passwordToggleEnabled="true"-->
-        <!--                app:passwordToggleDrawable="@drawable/show_password_selector"-->
-        <com.google.android.material.textfield.TextInputEditText
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.MainActivity">
 
+        <Button
+            android:id="@+id/btnNotificationOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification 1"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:id="@+id/btnNotificationTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification 2"
+            android:layout_margin="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:id="@+id/til_dd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="pssword"
-            android:inputType="textPassword"
-            android:padding="11dp"
-            android:paddingStart="13dp"
-            android:paddingEnd="13dp"
-            android:textAlignment="viewStart"
-            android:textSize="13sp" />
-    </com.example.android_notification.ui.PasswordView>
+            android:layout_margin="10dp"
+            android:paddingTop="5dp"
+            app:hintEnabled="false">
+            <!--                app:passwordToggleEnabled="true"-->
+            <!--                app:passwordToggleDrawable="@drawable/show_password_selector"-->
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="11dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                ddL_adapter="@{viewModel.getDDDLsList}"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                android:textAlignment="viewStart"
+                android:textSize="13sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

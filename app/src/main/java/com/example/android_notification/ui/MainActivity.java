@@ -4,6 +4,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,20 +18,30 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.example.android_notification.R;
 import com.example.android_notification.broadcast.PageReloaderStatusReceiver;
 import com.example.android_notification.databinding.ActivityMainBinding;
 import com.example.android_notification.services.ChatHeadService;
 import com.example.android_notification.utils.BroadcastReceiverHelper;
+import com.example.android_notification.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private ActivityMainBinding binding;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        binding.setViewModel(viewModel);
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+
+
+
+        viewModel.setDDLList();
 
         binding.btnNotificationOne.setOnClickListener(v -> {
             startActivity(new Intent(this, NotificationOneActivity.class));
