@@ -1,4 +1,6 @@
-package com.example.android_notification.permission;
+package com.example.android_notification.permission.permissionInterfaceImp;
+
+import com.example.android_notification.permission.permissonInterface.PermissionTextProvider;
 
 public class DefaultPermissionTextProvider implements PermissionTextProvider {
     @Override
