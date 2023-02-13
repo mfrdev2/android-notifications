@@ -18,6 +18,7 @@ import com.example.android_notification.databinding.ActivityPermissionHandingBin
 import com.example.android_notification.permission.permissionInterfaceImp.CameraPermissionTextProvider;
 import com.example.android_notification.permission.permissionInterfaceImp.DefaultPermissionTextProvider;
 import com.example.android_notification.permission.PermissionDialog;
+import com.example.android_notification.permission.permissonInterface.DialogCallBack;
 import com.example.android_notification.permission.permissonInterface.PermissionTextProvider;
 import com.example.android_notification.permission.PermissionUtil;
 import com.example.android_notification.permission.permissionInterfaceImp.PhoneCallPermissionTextProvider;

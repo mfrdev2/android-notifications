@@ -1,4 +1,4 @@
-package com.example.android_notification.ui;
+package com.example.android_notification.permission.permissonInterface;
 
 public interface DialogCallBack {
     void onOkClick();

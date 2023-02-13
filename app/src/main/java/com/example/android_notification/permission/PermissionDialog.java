@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.android_notification.permission.permissonInterface.PermissionTextProvider;
-import com.example.android_notification.ui.DialogCallBack;
+import com.example.android_notification.permission.permissonInterface.DialogCallBack;
 
 public class PermissionDialog {
     final Context context;
