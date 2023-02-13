@@ -1,7 +1,7 @@
 package com.example.android_notification;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
@@ -9,7 +9,7 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.android_notification.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class MyApp extends Application {
+public class MyApp extends MultiDexApplication {
     private static final String TAG = MyApp.class.getSimpleName();
     private  NotificationManagerCompat notificationManagerCompat;
     private static MyApp myApp;
