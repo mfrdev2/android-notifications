@@ -59,5 +59,17 @@
                 android:textSize="13sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.mackhartley.roundedprogressbar.RoundedProgressBar
+            android:id="@+id/custom_bar"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rpbCornerRadius="10dp"
+            app:rpbShowProgressText="true"
+            app:rpbProgress="50"
+            app:rpbTextPadding="8dp"
+            />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
