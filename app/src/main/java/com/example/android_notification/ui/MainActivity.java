@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
         passwordView();
 
+        progressIndicator();
+    }
 
+    private void progressIndicator() {
+       binding.mProgressIndicator1.setForegroundColor(Color.RED);
+       binding.mProgressIndicator1.setBackgroundColor(Color.GREEN);
+       binding.mProgressIndicator1.setValue(50);
+       binding.mProgressIndicator1.setPieStyle(false);
     }
 
     private void passwordView() {

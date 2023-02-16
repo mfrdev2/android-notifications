@@ -9,67 +9,81 @@
             type="com.example.android_notification.viewmodel.MainActivityViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".ui.MainActivity">
-        <Button
-            android:id="@+id/btnPermission"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Permission Task"
-            android:layout_margin="10dp" />
-
-        <Button
-            android:id="@+id/btnNotificationOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notification 1"
-            android:layout_margin="10dp" />
-
-        <Button
-            android:id="@+id/btnNotificationTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notification 2"
-            android:layout_margin="10dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:id="@+id/til_dd"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:paddingTop="5dp"
-            app:hintEnabled="false">
-            <!--                app:passwordToggleEnabled="true"-->
-            <!--                app:passwordToggleDrawable="@drawable/show_password_selector"-->
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:layout_height="match_parent"
+            >
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="11dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                ddL_adapter="@{viewModel.getDDDLsList}"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                android:textAlignment="viewStart"
-                android:textSize="13sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:context=".ui.MainActivity">
+                <Button
+                    android:id="@+id/btnPermission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Permission Task"
+                    android:layout_margin="10dp" />
 
-        <com.mackhartley.roundedprogressbar.RoundedProgressBar
-            android:id="@+id/custom_bar"
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:layout_height="40dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:rpbCornerRadius="10dp"
-            app:rpbShowProgressText="true"
-            app:rpbProgress="50"
-            app:rpbTextPadding="8dp"
-            />
+                <Button
+                    android:id="@+id/btnNotificationOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notification 1"
+                    android:layout_margin="10dp" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+                <Button
+                    android:id="@+id/btnNotificationTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notification 2"
+                    android:layout_margin="10dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:id="@+id/til_dd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:paddingTop="5dp"
+                    app:hintEnabled="false">
+                    <!--                app:passwordToggleEnabled="true"-->
+                    <!--                app:passwordToggleDrawable="@drawable/show_password_selector"-->
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="11dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        ddL_adapter="@{viewModel.getDDDLsList}"
+                        android:paddingStart="13dp"
+                        android:paddingEnd="13dp"
+                        android:textAlignment="viewStart"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.mackhartley.roundedprogressbar.RoundedProgressBar
+                    android:id="@+id/custom_bar"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rpbCornerRadius="10dp"
+                    app:rpbShowProgressText="true"
+                    app:rpbProgress="50"
+                    app:rpbTextPadding="8dp"
+                    />
+                <com.example.android_notification.custom_ui.ProgressIndicator
+                    android:id="@+id/mProgressIndicator1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+
+                    />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+
+
 </layout>
