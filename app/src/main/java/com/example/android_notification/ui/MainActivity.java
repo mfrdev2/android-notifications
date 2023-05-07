@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         binding.btnNotificationTwo.setOnClickListener(v -> {
             startActivity(new Intent(this, NotificationTwoActivity.class));
         });
+
+        binding.cameraPreview.setOnClickListener(v -> {
+            startActivity(new Intent(this, CameraActivity.class));
+        });
         askNotificationPermission();
 
        // windowPermission();
