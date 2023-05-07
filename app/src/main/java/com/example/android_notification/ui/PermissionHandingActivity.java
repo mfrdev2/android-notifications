@@ -18,6 +18,7 @@ import com.example.android_notification.databinding.ActivityPermissionHandingBin
 import com.example.android_notification.permission.permissionInterfaceImp.CameraPermissionTextProvider;
 import com.example.android_notification.permission.permissionInterfaceImp.DefaultPermissionTextProvider;
 import com.example.android_notification.permission.PermissionDialog;
+import com.example.android_notification.permission.permissionInterfaceImp.NotificationPermissionTextProvider;
 import com.example.android_notification.permission.permissonInterface.DialogCallBack;
 import com.example.android_notification.permission.permissonInterface.PermissionTextProvider;
 import com.example.android_notification.permission.PermissionUtil;
@@ -61,7 +62,7 @@ public class PermissionHandingActivity extends AppCompatActivity {
 
             new PermissionDialog(
                     this,
-                    getPermissionProvider(permission),
+                    permissionUtil.getPermissionProvider(permission),
                     !shouldShowRequestPermissionRationale(permission),
                     new DialogCallBack() {
                         @Override
@@ -88,21 +89,7 @@ public class PermissionHandingActivity extends AppCompatActivity {
 
     }
 
-    private PermissionTextProvider getPermissionProvider(String permission) {
-        Log.d(TAG, "getPermissionProviderFor: "+permission);
-        switch (permission) {
-            case Manifest.permission.CAMERA: {
-                return new CameraPermissionTextProvider();
-            }
-            case Manifest.permission.RECORD_AUDIO: {
-                return new RecordAudioPermissionTextProvider();
-            }
-            case Manifest.permission.CALL_PHONE: {
-                return new PhoneCallPermissionTextProvider();
-            }
-        }
-        return new DefaultPermissionTextProvider();
-    }
+
 
 
     private void onMultiplePermissionClick(View view) {
