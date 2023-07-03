@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         binding.cameraPreview.setOnClickListener(v -> {
             startActivity(new Intent(this, CameraActivity.class));
         });
+
+        binding.inAppBrowser.setOnClickListener(v -> {
+            startActivity(new Intent(this, InAppBrowserActivity.class));
+        });
         askNotificationPermission();
 
        // windowPermission();
