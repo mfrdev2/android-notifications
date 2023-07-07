@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android-Notification</string>
+    <string name="title_activity_webview">WebviewActivity</string>
+    <string name="title_text">শিরোনাম বাংলা</string>
+    <string name="english_text">ইংরেজি</string>
+    <string name="bangla_text">বাংলা</string>
+    <string name="localization_test">ভাষা পরীক্ষা</string>
+    <string name="next_text">পরবর্তী</string>
+</resources>

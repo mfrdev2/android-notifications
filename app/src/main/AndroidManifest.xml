@@ -31,6 +31,9 @@
         android:theme="@style/Theme.AndroidNotification"
         tools:targetApi="31">
         <activity
+            android:name=".localization.LocalizationTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".customtab.WebviewActivity"
             android:label="@string/title_activity_webview"
             android:parentActivityName=".ui.InAppBrowserActivity">

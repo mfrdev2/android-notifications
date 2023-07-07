@@ -22,6 +22,7 @@ import android.util.Log;
 import com.example.android_notification.R;
 import com.example.android_notification.broadcast.PageReloaderStatusReceiver;
 import com.example.android_notification.databinding.ActivityMainBinding;
+import com.example.android_notification.localization.LocalizationTestActivity;
 import com.example.android_notification.services.ChatHeadService;
 import com.example.android_notification.utils.BroadcastReceiverHelper;
 import com.example.android_notification.viewmodel.MainActivityViewModel;
@@ -61,15 +62,18 @@ public class MainActivity extends AppCompatActivity {
         binding.inAppBrowser.setOnClickListener(v -> {
             startActivity(new Intent(this, InAppBrowserActivity.class));
         });
+        binding.btnLocalizationText.setOnClickListener(v -> {
+            startActivity(new Intent(this, LocalizationTestActivity.class));
+        });
         askNotificationPermission();
 
        // windowPermission();
 
         BroadcastReceiverHelper.registerBroadCastReceiver(this,new PageReloaderStatusReceiver(),new IntentFilter("page_reload"));
 
-        PageReloaderStatusReceiver.getStatus().observe(this,str->{
-            System.out.println(TAG +" :: " +str);
-        });
+       // PageReloaderStatusReceiver.getStatus().observe(this,str->{
+        //    System.out.println(TAG +" :: " +str);
+       // });
 
         passwordView();
 

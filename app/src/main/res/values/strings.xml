@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Android-Notification</string>
     <string name="title_activity_webview">WebviewActivity</string>
+    <string name="title_text">Title english</string>
+    <string name="english_text">English</string>
+    <string name="bangla_text">Bangla</string>
+    <string name="localization_test">Localization test</string>
+    <string name="next_text">Next</string>
 </resources>
